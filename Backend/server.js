@@ -8,7 +8,7 @@ import chatRoutes from "./routes/chat.js";
 dns.setServers(["8.8.8.8"]);
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
@@ -28,26 +28,3 @@ const connectDB = async () => {
         console.log("Failed to connect with Db", err);
     }
 }
-
-// app.post("/test", async (req, res) => {
-//     const options = {
-//         method: "POST",
-//         headers: {
-//             "x-goog-api-key": `${process.env.GEMINI_API_KEY}`,
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({
-//             model: "gemini-3.6-flash",
-//             input: message,
-//         })
-//     };
-
-//     try {
-//         const response = await fetch(" https://generativelanguage.googleapis.com/v1beta/interactions", options);
-//         const data = await response.json();
-//         // console.log(data.steps[1].content[0].text);
-//         res.send(data.steps[1].content[0].text);
-//     } catch (err) {
-//         console.log(err);
-//     }
-// });
